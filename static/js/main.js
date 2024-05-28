@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let intervalId = setInterval(
         playShootingStar, 2000
     )
+    toggleMenu();
     
 
 
@@ -29,10 +30,26 @@ document.addEventListener("DOMContentLoaded", function () {
 function navigatePage() {
     document.addEventListener("click", (event) => {
 
+        
+
         let elTargetClick = event.target
         // console.log(elTargetClick.classList)
         if (elTargetClick.classList.contains("nav-menu")) {
-            switchPage(elTargetClick.id)
+            switchPage(elTargetClick.id);
+            document.querySelector(".nav-main").classList.remove("active");
+
+            //style current menu
+            document.querySelectorAll(".nav-menu").forEach(menu=>{
+               if (menu.id === elTargetClick.id){
+                elTargetClick.classList.add("curr-menu");
+               }
+               else{
+                if(menu.classList.contains("curr-menu")){
+                    menu.classList.remove("curr-menu");
+                }
+               }
+            })
+
         }
 
     })
@@ -49,4 +66,18 @@ function playShootingStar(){
 
     }
 
-}
+
+};
+
+function toggleMenu(){
+
+    let elMenu= document.querySelector(".nav-main");
+
+    let elBurgers = document.querySelector(".nav-burger");
+
+    elBurgers.addEventListener("click", ()=>{
+        elMenu.classList.toggle("active");
+        // console.log("clciked");
+    }
+    );
+};

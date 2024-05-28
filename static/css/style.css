@@ -12,6 +12,11 @@ section {
   width: 100vw;
   min-height: calc(100vh - 70px);
 }
+@media (max-width: 425px) {
+  section {
+    padding-top: 20px;
+  }
+}
 
 header {
   position: relative;
@@ -22,17 +27,47 @@ header {
   padding-right: 30px;
   background-color: white;
   z-index: 3;
+  height: 50px;
+}
+@media (max-width: 425px) {
+  header {
+    flex-direction: row;
+    padding-left: 10px;
+    background-color: transparent;
+    position: fixed;
+    width: 100vw;
+  }
 }
 header div .logo-container {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 100%;
   background-image: url(../../resource/mylogo.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
-header nav {
+@media (max-width: 425px) {
+  header div .logo-container {
+    display: none;
+  }
+}
+header .nav-burger {
+  display: none;
+}
+@media (max-width: 425px) {
+  header .nav-burger {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+  }
+}
+header .nav-burger .burger {
+  height: 8px;
+  width: 20px;
+  border-bottom: 2px solid white;
+}
+header .nav-main {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -43,13 +78,43 @@ header nav {
      -moz-user-select: none;
           user-select: none;
 }
-header nav .nav-menu {
+@media (max-width: 425px) {
+  header .nav-main {
+    display: none;
+  }
+}
+header .nav-main .nav-menu {
   border-right: 1px solid black;
   padding-right: 10px;
 }
-header nav .nav-menu:hover {
+header .nav-main .nav-menu:hover {
   font-size: 17px;
   text-decoration: underline;
+}
+@media (max-width: 425px) {
+  header .nav-main .nav-menu {
+    border: none;
+  }
+}
+header .nav-main .curr-menu {
+  color: Blue;
+  font-weight: 600;
+}
+@media (max-width: 425px) {
+  header .active {
+    display: flex;
+    color: white;
+    flex-direction: column;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    align-items: start;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    width: 100vw;
+    justify-content: start;
+    padding-left: 10px;
+  }
 }
 
 .home {
@@ -69,13 +134,21 @@ header nav .nav-menu:hover {
   padding-top: 100px;
   z-index: 2;
 }
+@media (max-width: 460px) {
+  .home .banner {
+    height: 300px;
+  }
+}
 .home .banner h1 {
   font-size: 40px;
 }
 .home .cto {
   text-align: center;
-  color: green;
+}
+.home .cto a {
+  color: red;
   font-size: 20px;
+  text-decoration: none;
   animation: blink 1s infinite;
 }
 .home .logo-container {
@@ -89,12 +162,19 @@ header nav .nav-menu:hover {
   background-size: contain;
   background-color: white;
   border-radius: 70px;
+  z-index: 0;
 }
 .home .react {
   background-image: url(../../resource/react_logo.png);
   top: -100px;
   left: 100px;
   animation: rotateBg 7s infinite;
+}
+@media (max-width: 800px) {
+  .home .react {
+    top: -165px;
+    left: 50px;
+  }
 }
 @keyframes rotateBg {
   0% {
@@ -111,7 +191,7 @@ header nav .nav-menu:hover {
   }
   50% {
     font-size: 20px;
-    color: green;
+    color: yellow;
   }
   100% {
     font-size: 20px;
@@ -123,6 +203,11 @@ header nav .nav-menu:hover {
   top: -170px;
   left: calc(100vw - 170px);
   animation: rotateBg 7s infinite;
+}
+@media (max-width: 800px) {
+  .home .js {
+    top: -240px;
+  }
 }
 .home .css {
   background-image: url(../../resource/css_logo.png);
@@ -178,10 +263,19 @@ header nav .nav-menu:hover {
   text-align: center;
 }
 .about-me .section-container .about {
-  padding-top: 20px;
+  padding-top: 50px;
   display: flex;
   flex-direction: row;
   padding-bottom: 15px;
+  width: 100%;
+  justify-content: center;
+}
+@media screen and (max-width: 770px) {
+  .about-me .section-container .about {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 }
 .about-me .section-container .about .left-container {
   padding-top: 50px;
@@ -195,8 +289,13 @@ header nav .nav-menu:hover {
   border: 1px double gray;
   border-radius: 25px;
 }
+@media (max-width: 770px) {
+  .about-me .section-container .about .left-container {
+    padding-top: 0;
+  }
+}
 .about-me .section-container .about .about-details {
-  width: calc(100vw - 400px);
+  width: 50vw;
   background-color: white;
   border: 2px double gray;
   padding: 10px;
@@ -204,6 +303,11 @@ header nav .nav-menu:hover {
 }
 .about-me .section-container .about .about-details p {
   padding: 10px;
+}
+@media screen and (max-width: 770px) {
+  .about-me .section-container .about .about-details {
+    width: 80vw;
+  }
 }
 
 .footer-text {
@@ -256,7 +360,13 @@ header nav .nav-menu:hover {
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  max-width: 98%;
+  max-width: 800px;
+  margin: auto;
+}
+@media (max-width: 830px) {
+  .profile-details .profile-parts {
+    max-width: 95%;
+  }
 }
 .profile-details .profile-parts .part-title {
   height: 30px;
@@ -284,7 +394,7 @@ header nav .nav-menu:hover {
 }
 
 .dl-cv {
-  padding: 30px;
+  padding: 30px 0;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -292,6 +402,9 @@ header nav .nav-menu:hover {
 .dl-cv a {
   text-decoration: none;
   color: blue;
+  background-color: white;
+  border-radius: 2px;
+  padding: 4px;
 }
 
 .sub {
